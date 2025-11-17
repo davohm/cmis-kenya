@@ -1,0 +1,49 @@
+react-dom_client.js?v=ce7c2e2d:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+supabase.ts:6 Supabase URL: https://aeclmmvteaegnxxjvpjr.supabase.co
+supabase.ts:7 Supabase URL type: string
+supabase.ts:8 All env vars: Object
+AuthContext.tsx:136 Uncaught TypeError: Cannot read properties of undefined (reading 'some')
+    at hasRole (AuthContext.tsx:136:21)
+    at Dashboard (Dashboard.tsx:65:9)
+    at renderWithHooks (react-dom_client.js?v=ce7c2e2d:11548:26)
+    at updateFunctionComponent (react-dom_client.js?v=ce7c2e2d:14582:28)
+    at beginWork (react-dom_client.js?v=ce7c2e2d:15924:22)
+    at HTMLUnknownElement.callCallback2 (react-dom_client.js?v=ce7c2e2d:3674:22)
+    at Object.invokeGuardedCallbackDev (react-dom_client.js?v=ce7c2e2d:3699:24)
+    at invokeGuardedCallback (react-dom_client.js?v=ce7c2e2d:3733:39)
+    at beginWork$1 (react-dom_client.js?v=ce7c2e2d:19765:15)
+    at performUnitOfWork (react-dom_client.js?v=ce7c2e2d:19198:20)
+AuthContext.tsx:136 Uncaught TypeError: Cannot read properties of undefined (reading 'some')
+    at hasRole (AuthContext.tsx:136:21)
+    at Dashboard (Dashboard.tsx:65:9)
+    at renderWithHooks (react-dom_client.js?v=ce7c2e2d:11548:26)
+    at updateFunctionComponent (react-dom_client.js?v=ce7c2e2d:14582:28)
+    at beginWork (react-dom_client.js?v=ce7c2e2d:15924:22)
+    at HTMLUnknownElement.callCallback2 (react-dom_client.js?v=ce7c2e2d:3674:22)
+    at Object.invokeGuardedCallbackDev (react-dom_client.js?v=ce7c2e2d:3699:24)
+    at invokeGuardedCallback (react-dom_client.js?v=ce7c2e2d:3733:39)
+    at beginWork$1 (react-dom_client.js?v=ce7c2e2d:19765:15)
+    at performUnitOfWork (react-dom_client.js?v=ce7c2e2d:19198:20)
+react-dom_client.js?v=ce7c2e2d:14032 The above error occurred in the <Dashboard> component:
+
+    at Dashboard (https://b9ca7ded-9ba4-4f57-8b96-0ff8ef426921-00-13h5ov7d8nlxs.riker.replit.dev/src/components/Dashboard.tsx?t=1759990063461:30:41)
+    at AppContent (https://b9ca7ded-9ba4-4f57-8b96-0ff8ef426921-00-13h5ov7d8nlxs.riker.replit.dev/src/App.tsx?t=1759990063461:25:37)
+    at AuthProvider (https://b9ca7ded-9ba4-4f57-8b96-0ff8ef426921-00-13h5ov7d8nlxs.riker.replit.dev/src/contexts/AuthContext.tsx?t=1759990063461:21:32)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ react-dom_client.js?v=ce7c2e2d:14032
+react-dom_client.js?v=ce7c2e2d:19413 Uncaught TypeError: Cannot read properties of undefined (reading 'some')
+    at hasRole (AuthContext.tsx:136:21)
+    at Dashboard (Dashboard.tsx:65:9)
+    at renderWithHooks (react-dom_client.js?v=ce7c2e2d:11548:26)
+    at updateFunctionComponent (react-dom_client.js?v=ce7c2e2d:14582:28)
+    at beginWork (react-dom_client.js?v=ce7c2e2d:15924:22)
+    at beginWork$1 (react-dom_client.js?v=ce7c2e2d:19753:22)
+    at performUnitOfWork (react-dom_client.js?v=ce7c2e2d:19198:20)
+    at workLoopSync (react-dom_client.js?v=ce7c2e2d:19137:13)
+    at renderRootSync (react-dom_client.js?v=ce7c2e2d:19116:15)
+    at recoverFromConcurrentError (react-dom_client.js?v=ce7c2e2d:18736:28)
+/favicon.ico:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+/favicon.ico:1  Failed to load resource: the server responded with a status of 404 (Not Found)

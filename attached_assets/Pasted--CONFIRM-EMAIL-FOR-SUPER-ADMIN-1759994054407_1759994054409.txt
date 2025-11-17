@@ -1,0 +1,75 @@
+-- ================================================================
+-- CONFIRM EMAIL FOR SUPER ADMIN USER
+-- Run this in Supabase SQL Editor
+-- ================================================================
+
+-- STEP 1: Confirm the email for the user
+UPDATE auth.users
+SET email_confirmed_at = NOW()
+WHERE email = 'hqadmin@cmis.go.ke'
+  AND email_confirmed_at IS NULL;
+
+-- STEP 2: Verify the user is confirmed
+SELECT 
+  id,
+  email,
+  email_confirmed_at,
+  created_at,
+  CASE 
+    WHEN email_confirmed_at IS NOT NULL THEN '✅ CONFIRMED'
+    ELSE '❌ NOT CONFIRMED'
+  END as status
+FROM auth.users
+WHERE email = 'hqadmin@cmis.go.ke';
+
+-- STEP 3: Check if user profile and role exist
+SELECT 
+  u.id,
+  u.email,
+  u.full_name,
+  ur.role,
+  t.name as tenant,
+  CASE 
+    WHEN u.id IS NOT NULL AND ur.role IS NOT NULL THEN '✅ COMPLETE SETUP'
+    WHEN u.id IS NOT NULL THEN '⚠️ MISSING ROLE'
+    ELSE '❌ MISSING PROFILE'
+  END as setup_status
+FROM auth.users au
+LEFT JOIN users u ON au.id = u.id
+LEFT JOIN user_roles ur ON u.id = ur.user_id
+LEFT JOIN tenants t ON ur.tenant_id = t.id
+WHERE au.email = 'hqadmin@cmis.go.ke';
+
+-- ================================================================
+-- EXPECTED OUTPUT:
+-- Step 2 should show: ✅ CONFIRMED
+-- Step 3 should show: ✅ COMPLETE SETUP or indicate what's missing
+-- ================================================================
+
+-- If Step 3 shows "MISSING PROFILE" or "MISSING ROLE", run this:
+
+DO $$
+DECLARE
+  auth_user_id uuid;
+  national_hq_id uuid := 'c455148f-9f61-4e79-9d1f-99d3a04d3229';
+BEGIN
+  -- Get the auth user ID
+  SELECT id INTO auth_user_id FROM auth.users WHERE email = 'hqadmin@cmis.go.ke';
+  
+  IF auth_user_id IS NULL THEN
+    RAISE EXCEPTION 'Auth user not found';
+  END IF;
+
+  -- Create profile if missing
+  INSERT INTO users (id, email, full_name, tenant_id)
+  VALUES (auth_user_id, 'hqadmin@cmis.go.ke', 'HQ Administrator', national_hq_id)
+  ON CONFLICT (id) DO NOTHING;
+
+  -- Create role if missing
+  INSERT INTO user_roles (user_id, tenant_id, role, is_active)
+  VALUES (auth_user_id, national_hq_id, 'SUPER_ADMIN', true)
+  ON CONFLICT (user_id, tenant_id, role) DO NOTHING;
+
+  RAISE NOTICE 'Setup completed for user: %', auth_user_id;
+END $$;
+

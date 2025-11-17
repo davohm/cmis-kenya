@@ -1,0 +1,132 @@
+-- ================================================================
+-- PREREQUISITE: CREATE COUNTIES & COOPERATIVE TYPES FOR DEMO DATA
+-- Run this FIRST before SEED_DEMO_DATA.sql
+-- This creates the counties and cooperative types needed for demo seed scripts
+-- ================================================================
+
+-- ================================================================
+-- PART 1: CREATE COOPERATIVE TYPES
+-- ================================================================
+RAISE NOTICE 'Creating cooperative types...';
+
+INSERT INTO cooperative_types (id, name, category, description, created_at)
+VALUES 
+  ('70942fe8-d9b8-4158-82dd-5f5f3cf08a4e', 'Savings and Credit Cooperative (SACCO)', 'SACCO', 'Financial cooperative providing savings and credit services', NOW()),
+  ('081f68b2-8c6f-4005-8d7a-032aef3db6b9', 'Agricultural Cooperative', 'AGRICULTURAL', 'Cooperative focused on agricultural production and marketing', NOW()),
+  ('57d95725-d28a-463c-b85f-63cabe228839', 'Dairy Cooperative', 'DAIRY', 'Milk production and marketing cooperative', NOW()),
+  ('4b884f64-af3d-459d-a02f-19fda38a2a28', 'Transport Cooperative (Matatu SACCO)', 'TRANSPORT', 'Public transport cooperative', NOW()),
+  ('9143fb29-e0a3-463d-b118-8a1a6fa9c4a7', 'Marketing Cooperative', 'MARKETING', 'Agricultural marketing and value addition', NOW()),
+  ('e6f15693-3efd-4ad0-8ba6-fabbaeeab468', 'Housing Cooperative', 'HOUSING', 'Cooperative for affordable housing development', NOW())
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  category = EXCLUDED.category,
+  description = EXCLUDED.description;
+
+-- ================================================================
+-- PART 2: CREATE COUNTIES
+-- ================================================================
+RAISE NOTICE 'Creating counties...';
+
+INSERT INTO tenants (id, name, county_code, type, is_active, created_at, updated_at)
+VALUES 
+  -- Part 1 Counties (SEED_DEMO_DATA.sql)
+  ('0772677e-8227-495e-a35b-8c48fb102c37', 'Vihiga', '038', 'COUNTY', true, NOW(), NOW()),
+  ('150e47fa-de81-4ede-bb01-0f01b33a2ab3', 'Mombasa', '001', 'COUNTY', true, NOW(), NOW()),
+  ('04c00114-2689-4811-9703-734b2656591e', 'Kisumu', '042', 'COUNTY', true, NOW(), NOW()),
+  
+  -- Part 2 Counties (SEED_DEMO_DATA_PART2.sql)
+  ('14b4b3f1-6c59-4528-b97c-d2d38edcc477', 'Tana River', '004', 'COUNTY', true, NOW(), NOW()),
+  ('18d97f0d-bfbd-4a76-9286-2945ab6368cd', 'Kilifi', '003', 'COUNTY', true, NOW(), NOW()),
+  ('276c5f30-8456-4d34-a1e9-7e964663147c', 'Elgeyo Marakwet', '028', 'COUNTY', true, NOW(), NOW()),
+  ('29ffc413-237b-44be-bd0a-79b91883b640', 'Kirinyaga', '020', 'COUNTY', true, NOW(), NOW()),
+  ('31b8cf96-9459-4f66-ba1c-7a3f33ed6540', 'Turkana', '023', 'COUNTY', true, NOW(), NOW()),
+  ('398660b7-2a21-4e20-8c5b-87354619fadb', 'Garissa', '007', 'COUNTY', true, NOW(), NOW()),
+  ('3e714a76-544e-4e0b-b4f1-300d8eba5fce', 'Mandera', '009', 'COUNTY', true, NOW(), NOW())
+ON CONFLICT (id) DO UPDATE SET
+  name = EXCLUDED.name,
+  county_code = EXCLUDED.county_code,
+  is_active = EXCLUDED.is_active,
+  updated_at = NOW();
+
+-- ================================================================
+-- VERIFICATION
+-- ================================================================
+
+-- Verify cooperative types
+SELECT 
+  '✅ COOPERATIVE TYPES' as item,
+  COUNT(*) as count,
+  'Expected: 6' as expected
+FROM cooperative_types 
+WHERE id IN (
+  '70942fe8-d9b8-4158-82dd-5f5f3cf08a4e',
+  '081f68b2-8c6f-4005-8d7a-032aef3db6b9',
+  '57d95725-d28a-463c-b85f-63cabe228839',
+  '4b884f64-af3d-459d-a02f-19fda38a2a28',
+  '9143fb29-e0a3-463d-b118-8a1a6fa9c4a7',
+  'e6f15693-3efd-4ad0-8ba6-fabbaeeab468'
+)
+
+UNION ALL
+
+-- Verify counties
+SELECT 
+  '✅ COUNTIES' as item,
+  COUNT(*) as count,
+  'Expected: 10' as expected
+FROM tenants 
+WHERE id IN (
+  '0772677e-8227-495e-a35b-8c48fb102c37',
+  '150e47fa-de81-4ede-bb01-0f01b33a2ab3',
+  '04c00114-2689-4811-9703-734b2656591e',
+  '14b4b3f1-6c59-4528-b97c-d2d38edcc477',
+  '18d97f0d-bfbd-4a76-9286-2945ab6368cd',
+  '276c5f30-8456-4d34-a1e9-7e964663147c',
+  '29ffc413-237b-44be-bd0a-79b91883b640',
+  '31b8cf96-9459-4f66-ba1c-7a3f33ed6540',
+  '398660b7-2a21-4e20-8c5b-87354619fadb',
+  '3e714a76-544e-4e0b-b4f1-300d8eba5fce'
+);
+
+-- List cooperative types created
+SELECT 
+  id, 
+  name, 
+  category,
+  '✅ Ready for seed scripts' as status
+FROM cooperative_types 
+WHERE id IN (
+  '70942fe8-d9b8-4158-82dd-5f5f3cf08a4e',
+  '081f68b2-8c6f-4005-8d7a-032aef3db6b9',
+  '57d95725-d28a-463c-b85f-63cabe228839',
+  '4b884f64-af3d-459d-a02f-19fda38a2a28',
+  '9143fb29-e0a3-463d-b118-8a1a6fa9c4a7',
+  'e6f15693-3efd-4ad0-8ba6-fabbaeeab468'
+)
+ORDER BY category;
+
+-- List counties created
+SELECT 
+  id, 
+  name, 
+  county_code,
+  is_active,
+  '✅ Ready for seed scripts' as status
+FROM tenants 
+WHERE id IN (
+  '0772677e-8227-495e-a35b-8c48fb102c37',
+  '150e47fa-de81-4ede-bb01-0f01b33a2ab3',
+  '04c00114-2689-4811-9703-734b2656591e',
+  '14b4b3f1-6c59-4528-b97c-d2d38edcc477',
+  '18d97f0d-bfbd-4a76-9286-2945ab6368cd',
+  '276c5f30-8456-4d34-a1e9-7e964663147c',
+  '29ffc413-237b-44be-bd0a-79b91883b640',
+  '31b8cf96-9459-4f66-ba1c-7a3f33ed6540',
+  '398660b7-2a21-4e20-8c5b-87354619fadb',
+  '3e714a76-544e-4e0b-b4f1-300d8eba5fce'
+)
+ORDER BY county_code;
+
+-- ================================================================
+-- ✅ SUCCESS! Now you can run SEED_DEMO_DATA.sql and SEED_DEMO_DATA_PART2.sql
+-- ================================================================

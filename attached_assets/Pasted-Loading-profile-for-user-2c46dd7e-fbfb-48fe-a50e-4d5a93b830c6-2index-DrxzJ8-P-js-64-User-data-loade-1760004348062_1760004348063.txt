@@ -1,0 +1,40 @@
+Loading profile for user: 2c46dd7e-fbfb-48fe-a50e-4d5a93b830c6
+2index-DrxzJ8_P.js:64 User data loaded successfully: hqadmin@cmis.go.ke
+index-DrxzJ8_P.js:64 Roles loaded: 1 role(s)
+index-DrxzJ8_P.js:64 Profile set successfully
+index-DrxzJ8_P.js:64 User data loaded successfully: hqadmin@cmis.go.ke
+index-DrxzJ8_P.js:64 Roles loaded: 1 role(s)
+index-DrxzJ8_P.js:64 Profile set successfully
+index-DrxzJ8_P.js:64 Roles loaded: 1 role(s)
+index-DrxzJ8_P.js:64 Profile set successfully
+index-DrxzJ8_P.js:64 Loading profile for user: 2c46dd7e-fbfb-48fe-a50e-4d5a93b830c6
+index-DrxzJ8_P.js:64 User data loaded successfully: hqadmin@cmis.go.ke
+index-DrxzJ8_P.js:64 Roles loaded: 1 role(s)
+index-DrxzJ8_P.js:64 Profile set successfully
+index-DrxzJ8_P.js:40 Error: Minified React error #310; visit https://reactjs.org/docs/error-decoder.html?invariant=310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yn (index-DrxzJ8_P.js:38:17615)
+    at Object.zb [as useMemo] (index-DrxzJ8_P.js:38:21308)
+    at yt.useMemo (index-DrxzJ8_P.js:9:6223)
+    at E8 (index-DrxzJ8_P.js:710:10466)
+    at Fg (index-DrxzJ8_P.js:38:17018)
+    at xp (index-DrxzJ8_P.js:40:3139)
+    at x5 (index-DrxzJ8_P.js:40:44833)
+    at m5 (index-DrxzJ8_P.js:40:39790)
+    at m4 (index-DrxzJ8_P.js:40:39718)
+    at pf (index-DrxzJ8_P.js:40:39570)
+gp @ index-DrxzJ8_P.js:40
+index-DrxzJ8_P.js:40 Uncaught Error: Minified React error #310; visit https://reactjs.org/docs/error-decoder.html?invariant=310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at yn (index-DrxzJ8_P.js:38:17615)
+    at Object.zb [as useMemo] (index-DrxzJ8_P.js:38:21308)
+    at yt.useMemo (index-DrxzJ8_P.js:9:6223)
+    at E8 (index-DrxzJ8_P.js:710:10466)
+    at Fg (index-DrxzJ8_P.js:38:17018)
+    at xp (index-DrxzJ8_P.js:40:3139)
+    at x5 (index-DrxzJ8_P.js:40:44833)
+    at m5 (index-DrxzJ8_P.js:40:39790)
+    at m4 (index-DrxzJ8_P.js:40:39718)
+    at pf (index-DrxzJ8_P.js:40:39570)
+/favicon.ico:1 
+        
+        
+       Failed to load resource: the server responded with a status of 404 ()
